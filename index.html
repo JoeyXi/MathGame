@@ -109,6 +109,9 @@
                 option1.style.display = 'inline-block';
                 option2.style.display = 'inline-block';
                 currentQuestion.style.display = 'block';
+                equation.style.display = 'block';
+        				options.style.display = 'block';
+        				timer.style.display = 'block';
                 generateEquation();
             }
 
@@ -182,6 +185,10 @@
 
                 if (currentCount > 10) {
                     showResults();
+                    equation.style.display = 'none';
+        						options.style.display = 'none';
+        						currentQuestion.style.display = 'none';
+        						timer.style.display = 'none';
                 } else {
                     updateCurrentQuestion();
                     generateEquation();
