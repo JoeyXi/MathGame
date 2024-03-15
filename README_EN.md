@@ -1,7 +1,3 @@
-- [English](README_EN.md)
-- [中文](README_ZH.md)
-
-
 # Math Game
 
 A simple math game where players must solve randomly generated math questions within a time limit.
@@ -13,11 +9,18 @@ A simple math game where players must solve randomly generated math questions wi
 - Statistics for correct answers and average response time.
 - Mobile-friendly interface.
 
+## Play Online
+
+Experience the Math Game online right now and sharpen your math skills.
+
+- [Live Experience](http://mathgame.gitscaffold.com/)
+- [English Version](http://mathgame.gitscaffold.com/indexen.html)
+
 ## How to Start the Game
 
 Simply open the `index.html` file in a JavaScript-enabled browser to start the game.
 
-## How to Use
+## Notes
 
-1. Clone the repository to your local machine or download the code files.
-2. Open the `index.html` file to start the game.
+- Ensure your browser allows the execution of JavaScript.
+- After the game ends, click the `Try Again!` button to restart the game.

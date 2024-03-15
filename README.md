@@ -13,6 +13,15 @@ A simple math game where players must solve randomly generated math questions wi
 - 答题正确率和平均时间统计。Statistics for correct answers and average response time.
 - 移动友好的界面设计。Mobile-friendly interface.
 
+## 在线体验 Play Online
+
+立即在线体验数学游戏，提升你的数学技能。
+Experience the Math Game online right now and sharpen your math skills.
+
+- [在线体验 Live Experience](http://mathgame.gitscaffold.com/)
+- [中文体验 Chinese Version](http://mathgame.gitscaffold.com/indexcn.html)
+- [英文体验 English Version](http://mathgame.gitscaffold.com/indexen.html)
+
 ## 如何开始游戏 How to Start the Game
 
 只需在支持 JavaScript 的浏览器中打开 `index.html` 文件即可开始游戏。
