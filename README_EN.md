@@ -1,5 +1,5 @@
 - [English](README_EN.md)
-- [ÖÐÎÄ](README_ZH.md)
+- [ä¸­æ–‡](README_ZH.md)
 
 
 # Math Game
