@@ -1,3 +1,6 @@
+- [English](README_EN.md)
+- [中文](README_ZH.md)
+
 # 数学游戏 Math Game
 
 这是一个简单的数学游戏，玩家需要在限定时间内解答随机生成的数学题目。
