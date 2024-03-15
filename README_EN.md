@@ -1,3 +1,7 @@
+- [English](README_EN.md)
+- [жпнд](README_ZH.md)
+
+
 # Math Game
 
 A simple math game where players must solve randomly generated math questions within a time limit.
