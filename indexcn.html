@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH GAME</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-size: 22px;
+        }
+
+        #game {
+            width: 90%;
+            max-width: 700px;
+            margin: 30px auto;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        #currentQuestion, #timer {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+
+        #equation {
+            font-size: 2.8em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        #options {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        #options button {
+            font-size: 3em;
+            padding: 20px 40px;
+            flex-grow: 1;
+            margin: 0 5px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #options button:hover {
+            background-color: #4cae4c;
+        }
+
+        #stats {
+            font-size: 1.6em;
+            margin: 20px 0;
+        }
+
+        #continueButton {
+            font-size: 2em;
+            padding: 15px 30px;
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: none;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        #continueButton:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="currentQuestion">剩余题目: 1 / 10</div>
+        <div id="timer">剩余时间: 10</div>
+        <div id="equation"></div>
+        <div id="options">
+            <button id="option1"></button>
+            <button id="option2"></button>
+        </div>
+        <div id="stats"></div>
+        <button id="continueButton">再试一次</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const equation = document.getElementById('equation');
+            const option1 = document.getElementById('option1');
+            const option2 = document.getElementById('option2');
+            const stats = document.getElementById('stats');
+            const timer = document.getElementById('timer');
+            const currentQuestion = document.getElementById('currentQuestion');
+            const continueButton = document.getElementById('continueButton');
+
+            let correctCount = 0;
+            let totalCount = 0;
+            let currentCount = 1;
+            let totalTime = 0;
+            let startTime;
+            let countdown;
+            let remainingTime = 10;
+
+            function updateTimer() {
+                remainingTime--;
+                timer.textContent = `剩余时间: ${remainingTime}`;
+                if (remainingTime <= 0) {
+                    clearInterval(countdown);
+                    checkAnswer(false);
+                }
+            }
+
+            function resetTimer() {
+                clearInterval(countdown);
+                remainingTime = 10;
+                timer.textContent = `剩余时间: ${remainingTime}`;
+                countdown = setInterval(updateTimer, 1000);
+            }
+
+            function updateCurrentQuestion() {
+                currentQuestion.textContent = `剩余题目: ${currentCount} / 10`;
+            }
+
+            function showResults() {
+                let accuracy = (correctCount / 10) * 100;
+                let avgTime = totalTime / 10;
+                stats.innerHTML = `正确率: ${accuracy.toFixed(2)}%<br>平均答题时间: ${avgTime.toFixed(2)} 秒`;
+                continueButton.style.display = 'block';
+                option1.style.display = 'none';
+                option2.style.display = 'none';
+            }
+
+            function resetGame() {
+                correctCount = 0;
+                totalCount = 0;
+                currentCount = 1;
+                totalTime = 0;
+                updateCurrentQuestion();
+                continueButton.style.display = 'none';
+                stats.innerHTML = '';
+                option1.style.display = 'inline-block';
+                option2.style.display = 'inline-block';
+                currentQuestion.style.display = 'block';
+                equation.style.display = 'block';
+        				options.style.display = 'block';
+        				timer.style.display = 'block';
+                generateEquation();
+            }
+
+            continueButton.onclick = resetGame;
+
+            function generateRandomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function generateEquation() {
+                if (currentCount > 10) {
+                    showResults();
+                    return;
+                }
+
+                const number1 = generateRandomNumber(1, 50);
+                const number2 = generateRandomNumber(1, 50);
+                const sum = number1 + number2;
+                const hideNumber = generateRandomNumber(1, 3);
+
+                let displayedEquation;
+                let correctAnswer;
+
+                switch (hideNumber) {
+                    case 1:
+                        displayedEquation = `? + ${number2} = ${sum}`;
+                        correctAnswer = number1;
+                        break;
+                    case 2:
+                        displayedEquation = `${number1} + ? = ${sum}`;
+                        correctAnswer = number2;
+                        break;
+                    case 3:
+                        displayedEquation = `${number1} + ${number2} = ?`;
+                        correctAnswer = sum;
+                        break;
+                }
+
+                equation.textContent = displayedEquation;
+                let fakeAnswer = generateRandomNumber(correctAnswer - 10, correctAnswer + 10);
+                while (fakeAnswer === correctAnswer || fakeAnswer < 0) {
+                    fakeAnswer = generateRandomNumber(correctAnswer - 10, correctAnswer + 10);
+                }
+
+                if (Math.random() < 0.5) {
+                    option1.textContent = correctAnswer;
+                    option2.textContent = fakeAnswer;
+                } else {
+                    option1.textContent = fakeAnswer;
+                    option2.textContent = correctAnswer;
+                }
+
+                option1.onclick = () => checkAnswer(option1.textContent == correctAnswer);
+                option2.onclick = () => checkAnswer(option2.textContent == correctAnswer);
+
+                startTime = new Date();
+                resetTimer();
+            }
+
+            function checkAnswer(isCorrect) {
+                clearInterval(countdown);
+                const endTime = new Date();
+                const timeTaken = (endTime - startTime) / 1000;
+                totalTime += timeTaken;
+                totalCount++;
+                currentCount++;
+
+                if (isCorrect) {
+                    correctCount++;
+                }
+
+                if (currentCount > 10) {
+                    showResults();
+                    equation.style.display = 'none';
+        						options.style.display = 'none';
+        						currentQuestion.style.display = 'none';
+        						timer.style.display = 'none';
+                } else {
+                    updateCurrentQuestion();
+                    generateEquation();
+                }
+            }
+
+            resetGame();
+        });
+    </script>
+</body>
+</html>
