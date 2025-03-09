@@ -18,9 +18,9 @@ A simple math game where players must solve randomly generated math questions wi
 立即在线体验数学游戏，提升你的数学技能。
 Experience the Math Game online right now and sharpen your math skills.
 
-- [在线体验 Live Experience](http://mathgame.gitscaffold.com/)
-- [中文体验 Chinese Version](http://mathgame.gitscaffold.com/indexcn.html)
-- [英文体验 English Version](http://mathgame.gitscaffold.com/indexen.html)
+- [在线体验 Live Experience](http://mathgame.95ib.com/)
+- [中文体验 Chinese Version](http://mathgame.95ib.com/indexcn.html)
+- [英文体验 English Version](http://mathgame.95ib.com/indexen.html)
 
 ## 如何开始游戏 How to Start the Game
 
